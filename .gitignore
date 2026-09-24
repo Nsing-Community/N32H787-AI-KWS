@@ -1,0 +1,43 @@
+# ===================== 构建产物 =====================
+# 全部构建输出（*.o *.d *.elf *.bin *.hex *.map *.lst 等）
+# 注意：不要用全局 *.bin —— firmware/openocd/flash_op/*.bin 与
+# firmware/openocd/flashos/flashop.bin 是烧录算法，必须纳入版本管理
+firmware/Makefile/build/
+
+# BusyBox shim 由 build.cmd 首次运行时在 tools/host/.shim 自动生成（硬链接）
+tools/host/.shim/
+
+# ===================== 自动生成的模型数组 =====================
+# firmware/USER/src/kws_model_data.cc 由 tools/embed_tflite.py 依据
+# models/DS_CNN_S.tflite 在构建时自动生成（约 570 KB 文本），
+# .tflite 才是受版本管理的模型制品。
+# 注意：firmware/USER/inc/kws_model_data.h 是手写的（仅 extern 声明），
+# 不受此规则影响，必须保留在版本库中。
+firmware/USER/src/kws_model_data.cc
+
+# ===================== Python =====================
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+env/
+
+# ===================== IDE / 编辑器 =====================
+.vscode/
+.idea/
+.settings/
+*.bak
+*~
+*.swp
+*.swo
+
+# Keil / N32Studio 调试器本地状态
+*.uvguix.*
+*.uvoptx.*
+
+# ===================== 操作系统 =====================
+Thumbs.db
+Desktop.ini
+.DS_Store

@@ -1,0 +1,31 @@
+[Version]
+Signature = "$Windows NT$"
+Class = USBDevice
+ClassGuid = {88bae032-5a81-49f0-bc3d-a4ff138216d6}
+Provider = %ProviderName%
+DriverVer = 09/17/2026,1.0.0.0
+PnpLockdown = 1
+
+[Manufacturer]
+%ProviderName% = Nations, NTamd64
+
+[Nations.NTamd64]
+%DeviceName% = USB_Install, USB\VID_19F5&PID_3106&MI_02
+
+[USB_Install]
+Include = winusb.inf
+Needs = WINUSB.NT
+
+[USB_Install.Services]
+Include = winusb.inf
+Needs = WINUSB.NT.Services
+
+[USB_Install.HW]
+AddReg = USB_Install.AddReg
+
+[USB_Install.AddReg]
+HKR,,DeviceInterfaceGUIDs,0x10000,"{CDB3B5AD-293B-4663-AA36-1AAE46463776}"
+
+[Strings]
+ProviderName = "Nations"
+DeviceName = "CMSIS-DAP v2"

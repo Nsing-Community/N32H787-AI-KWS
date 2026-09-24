@@ -1,0 +1,106 @@
+N32H787 Offline Keyword Spotting Demo
+Copyright (c) 2025, Nations Technologies Inc. (国民技术股份有限公司)
+
+This product is licensed under the Apache License, Version 2.0 (the "License");
+you may not use this product except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+================================================================================
+Third-party components
+================================================================================
+
+This product bundles or derives from the following third-party components.
+Your use of these components is also under the terms of their respective
+licenses, reproduced inside the source trees listed below:
+
+  1. ARM CMSIS (Cortex-M CMSIS-CORE headers and device files)
+     Copyright (c) Arm Limited (or its affiliates). All rights reserved.
+     License: Apache-2.0
+     Location: firmware/Driver/CMSIS/core/
+
+  2. TensorFlow Lite Micro (headers and the prebuilt library
+     libtensorflow-microlite.a), including the TensorFlow Lite Micro
+     audio/signal processing library used by the MFCC frontend
+     Copyright The TensorFlow Authors. All rights reserved.
+     License: Apache-2.0
+     Location: firmware/USER/tflm_sdk/ (LICENSE),
+               firmware/USER/tflm_sdk/signal/
+
+  3. ML-KWS-for-MCU (DS_CNN_S keyword-spotting model and MFCC frontend port)
+     The model file models/DS_CNN_S.tflite is byte-identical to
+     Pretrained_models/DS_CNN/DS_CNN_S.tflite from ML-KWS-for-MCU, trained on
+     the Google Speech Commands v0.02 data set. The MFCC frontend in
+     firmware/USER/src/kws_mfcc.c is a port of ML-KWS-for-MCU's
+     Deployment/Source/MFCC/mfcc.cpp (float32 variant).
+     Copyright (c) Arm Limited and its affiliates.
+     License: Apache-2.0
+     Location: models/DS_CNN_S.tflite, firmware/USER/src/kws_mfcc.c
+
+  4. CMSIS-NN and CMSIS headers bundled with TensorFlow Lite Micro
+     Copyright (c) Arm Limited (or its affiliates). All rights reserved.
+     License: Apache-2.0
+     Location: firmware/USER/tflm_sdk/third_party/cmsis_nn/
+
+  5. FlatBuffers
+     Copyright Google Inc. All rights reserved.
+     License: Apache-2.0
+     Location: firmware/USER/tflm_sdk/third_party/flatbuffers/
+
+  6. gemmlowp / ruy
+     Copyright The Gemmlowp Authors / Google LLC. All rights reserved.
+     License: Apache-2.0
+     Location: firmware/USER/tflm_sdk/third_party/gemmlowp/,
+               firmware/USER/tflm_sdk/third_party/ruy/
+
+  7. KissFFT
+     Copyright (c) 2003-2010 Mark Borgerding
+     License: BSD-3-Clause
+     Location: firmware/USER/tflm_sdk/third_party/kissfft/ (COPYING)
+
+  8. WM8978 codec register defaults and sequencing
+     firmware/USER/src/wm8978.c and firmware/USER/inc/wm8978.h are a
+     bare-metal adaptation of the Linux v6.12 sound/soc/codecs/wm8978.c
+     driver. These two files retain the GPL-2.0-only license declared in
+     their own headers and are NOT covered by the Apache-2.0 license of
+     the surrounding project. If you remove or replace these files (for
+     example with an independently written codec setup), the remaining
+     project is not affected by this notice.
+     Copyright (C) 2006-2010 Wolfson Microelectronics PLC.,
+                 Guennadi Liakhovetski, Carlos Munoz
+     License: GPL-2.0-only
+     Location: firmware/USER/src/wm8978.c, firmware/USER/inc/wm8978.h
+
+  9. N32H7xx Flash programming algorithm (NSLink tooling)
+     The flash algorithm blobs firmware/openocd/flash_op/*.bin and
+     firmware/openocd/flashos/flashop.bin are vendor-supplied programming
+     algorithms for N32H7xx devices, redistributed for the sole purpose of
+     programming this MCU family through OpenOCD/CMSIS-DAP.
+     Copyright (c) Nations Technologies Inc.
+     Location: firmware/openocd/
+
+  10. BusyBox (busybox-w32 build, used ONLY as a host-side Windows build tool:
+      build.cmd generates a sh/rm/mkdir/awk shim from it so the firmware can
+      be built without installing Git for Windows; it is never linked into,
+      executed on, or distributed inside the firmware image)
+      Copyright Erik Andersen, Rob Landley, Denys Vlasenko and many BusyBox
+      contributors, 1998-2026. busybox-w32 port by Ron Yorston.
+      License: GPL-2.0-only (license text: tools/host/LICENSE-busybox.txt)
+      Binary: tools/host/busybox64.exe
+        Version : BusyBox v1.38.0-FRP-6075-g169694ebd (2026-05-06 UTC build)
+        SHA-256 : 07BB1E5B095B00D68A695481F9240879F33C5724B40AA2308F999D54ED78F075
+      Source: https://github.com/rmyorston/busybox-w32
+              https://frippery.org/busybox/
+
+Trademarks:
+"Nations", "Nationstech", "N32", "N32H787" and the Nations logo are
+trademarks of Nations Technologies Inc. This project does not grant any
+right to use company or product trademarks beyond what is required for
+reasonable and customary use in describing the origin of the work.
