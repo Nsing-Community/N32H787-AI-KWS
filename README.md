@@ -2,6 +2,14 @@
 
 基于 N32H787 MCU 与板载 WM8978 音频编解码器，在端侧运行 TensorFlow Lite Micro 的 DS-CNN_S 语音关键词模型（KWS, Keyword Spotting），**完全离线**识别 10 个英文命令词并通过串口与指示灯实时输出结果的模板工程。
 
+## 在线烧录
+
+无需安装工具链，使用 Chrome/Edge 打开以下链接，通过 NSLink 调试器将固件直接烧录到 N32H787：
+
+<a href="https://update.nationstech.com/ns-flash/?target=n32h787&firmware=https%3A%2F%2Fraw.githubusercontent.com%2FNsing-Community%2FN32H787-AI-KWS%2Fmain%2Fbin%2Fn32h787_kws_demo.bin" target="_blank" rel="noopener noreferrer"><strong>打开在线烧录页面</strong></a>
+
+> 烧录前请通过 **DEBUG USB（J9）** 连接 NSLink。
+
 ## 简介
 
 本工程是一个低延迟的离线命令词识别模板：M7 内核通过 I2S + DMA 持续采集麦克风音频，每 60 ms 完成一次"音频取块 → MFCC 特征 → 神经网络推理 → 多帧平均判决"，识别到 `yes / no / up / down / left / right / on / off / stop / go` 时在串口打印一行 `关键词 置信度%` 并点亮指示灯。全程不依赖网络或云端，模型与推理全部在片内 SRAM 中完成，适合作为语音唤醒、声控开关、语音菜单等应用的起点。
